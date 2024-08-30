@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Tasks"
+        android:id="@+id/tasks"/>
+    <item android:title="Updates"
+        android:id="@+id/updates"/>
+    <item android:title="Chat"
+        android:id="@+id/chat"/>
+    <item android:title="Record"
+        android:id="@+id/record"/>
+</menu>
