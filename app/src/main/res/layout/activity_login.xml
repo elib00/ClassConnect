@@ -48,9 +48,14 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/lrn_input"
+                    android:hint="Learner Reference Number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Learner Reference Number" />
+                    android:drawablePadding="10dp"
+                    android:drawableStart="@drawable/user_icon"
+                    android:imeOptions="actionDone"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -61,9 +66,15 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password_input"
+                    android:hint="Password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password" />
+                    android:drawableStart="@drawable/lock_icon"
+                    android:drawableEnd="@drawable/password_hidden_icon"
+                    android:drawablePadding="10dp"
+                    android:imeOptions="actionDone"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -73,6 +84,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="40dp"
+                android:backgroundTint="#000000"
                 android:text="Log In"
                 android:textSize="16sp" />
 

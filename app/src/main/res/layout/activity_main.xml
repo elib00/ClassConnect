@@ -20,8 +20,11 @@
         android:id="@+id/bottom_nav_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#0000FF"
         android:padding="5dp"
-        android:background="#FFFFFF"
-        app:menu="@menu/bottom_nav_menu" />
+        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/white"
+        app:itemActiveIndicatorStyle="@color/white"
+        app:menu="@menu/bottom_nav_menu"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
