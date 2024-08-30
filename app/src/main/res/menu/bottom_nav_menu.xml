@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="Tasks"
-        android:id="@+id/tasks"/>
+        android:id="@+id/tasks_item"
+        android:icon="@drawable/tasks_icon"/>
     <item android:title="Updates"
-        android:id="@+id/updates"/>
+        android:id="@+id/updates_item"
+        android:icon="@drawable/announcements_icon"/>
     <item android:title="Chat"
-        android:id="@+id/chat"/>
+        android:id="@+id/chat_item"
+        android:icon="@drawable/chats_icon"/>
     <item android:title="Record"
-        android:id="@+id/record"/>
+        android:id="@+id/records_item"
+        android:icon="@drawable/records_icon"/>
 </menu>
