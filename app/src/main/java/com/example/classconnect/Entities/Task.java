@@ -4,12 +4,18 @@ public class Task {
     private final int taskNumber;
     private final String taskName;
     private final String taskInstructions;
+    private boolean isDone;
 
 
     public Task(int taskNumber, String taskName, String taskInstructions){
         this.taskNumber = taskNumber;
         this.taskName = taskName;
         this.taskInstructions = taskInstructions;
+        isDone = false;
+    }
+
+    public void setIsDone(boolean state){
+        isDone = state;
     }
 
     public int getTaskNumber(){

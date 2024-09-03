@@ -1,6 +1,7 @@
 package com.example.classconnect;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,8 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.classconnect.Entities.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.search.SearchBar;
 
 import java.util.ArrayList;
@@ -45,6 +48,7 @@ public class TaskFragment extends Fragment {
     private SearchView taskSearchView;
     private AppCompatButton ongoingButton;
     private AppCompatButton doneButton;
+    private FloatingActionButton addTaskButton;
 
     public TaskFragment() {
         // Required empty public constructor
@@ -98,21 +102,19 @@ public class TaskFragment extends Fragment {
         tasksContainer.setLayoutManager(new LinearLayoutManager(getContext()));
         tasksContainer.hasFixedSize();
 
-        adapter = new CustomAdapter(getContext(), taskList);
+        adapter = new CustomAdapter(getContext(), taskQueryList);
         tasksContainer.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
 
     private void initializeFragment(View view){
         taskList = new ArrayList<>();
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < 10; i++){
             taskList.add(new Task(i + 1, "SAMPLE", "SAMPLE"));
         }
 
-        ongoingButton = view.findViewById(R.id.ongoing_button);
-        doneButton = view.findViewById(R.id.done_button);
         taskSearchView = view.findViewById(R.id.task_searchbar);
-
+        taskQueryList = new ArrayList<>(taskList);
         taskSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -121,8 +123,74 @@ public class TaskFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                return false;
+                filterList(s);
+                return true;
             }
         });
+
+
+        //for the toggling of activities logic
+        ongoingButton = view.findViewById(R.id.ongoing_button);
+        doneButton = view.findViewById(R.id.done_button);
+
+
+        //set as the default one
+        ongoingButton.setSelected(true);
+
+        ongoingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectButton(ongoingButton);
+            }
+        });
+
+        doneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectButton(doneButton);
+            }
+        });
+
+        //for the floating button / adding task
+
+        addTaskButton = view.findViewById(R.id.add_task_button);
+        addTaskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CreateTaskActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void selectButton(AppCompatButton selectedButton){
+        ongoingButton.setSelected(false);
+        doneButton.setSelected(false);
+        selectedButton.setSelected(true);
+    }
+
+    private void filterList(String s){
+        List<Task> filteredList = new ArrayList<>();
+        System.out.println(s);
+        for(Task task : taskList){
+            String activityName = String.format("Activity %d: %s", task.getTaskNumber(), task.getTaskName());
+            System.out.println(activityName);
+            if(activityName.toLowerCase().contains(s.toLowerCase())){
+                filteredList.add(task);
+                System.out.println("na add si " + task.getTaskNumber());
+            }
+        }
+
+        if(!filteredList.isEmpty()){
+            setFilteredList(filteredList);
+        }else{
+            System.out.println("EMPTY ANG LIST!!!!");
+        }
+    }
+
+    private void setFilteredList(List<Task> filteredList){
+        taskQueryList.clear();
+        taskQueryList.addAll(filteredList);
+        adapter.notifyDataSetChanged();
     }
 }

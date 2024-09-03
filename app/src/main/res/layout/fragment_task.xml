@@ -48,21 +48,21 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/ongoing_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_marginEnd="5dp"
             android:layout_weight="1"
-            android:backgroundTint="#0000FF"
-            android:textColor="@color/white"
+            android:background="@drawable/button_selector"
+            android:textColor="@color/button_text_color_selector"
             android:text="Ongoing" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/done_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_marginStart="5dp"
             android:layout_weight="1"
-            android:backgroundTint="#0000FF"
-            android:textColor="@color/white"
+            android:background="@drawable/button_selector"
+            android:textColor="@color/button_text_color_selector"
             android:text="Done" />
     </LinearLayout>
 
