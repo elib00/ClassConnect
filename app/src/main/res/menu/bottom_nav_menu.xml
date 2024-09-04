@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="Tasks"
+    <item android:title="Task"
         android:id="@+id/tasks_item"
         android:icon="@drawable/tasks_icon"/>
-    <item android:title="Updates"
+    <item android:title="Update"
         android:id="@+id/updates_item"
         android:icon="@drawable/announcements_icon"/>
     <item android:title="Chat"
