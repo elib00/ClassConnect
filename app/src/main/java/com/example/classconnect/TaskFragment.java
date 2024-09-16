@@ -17,15 +17,13 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SearchView;
-import android.widget.Toast;
 
+import com.example.classconnect.Adapters.TaskCustomAdapter;
 import com.example.classconnect.Entities.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.search.SearchBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +46,7 @@ public class TaskFragment extends Fragment {
 
     private List<Task> taskList;
     private List<Task> taskQueryList;
-    private CustomAdapter adapter;
+    private TaskCustomAdapter adapter;
     private RecyclerView tasksContainer;
     private SearchView taskSearchView;
     private AppCompatButton ongoingButton;
@@ -111,7 +109,7 @@ public class TaskFragment extends Fragment {
         tasksContainer.setLayoutManager(new LinearLayoutManager(getContext()));
         tasksContainer.hasFixedSize();
 
-        adapter = new CustomAdapter(getContext(), taskQueryList);
+        adapter = new TaskCustomAdapter(getContext(), taskQueryList);
         tasksContainer.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }

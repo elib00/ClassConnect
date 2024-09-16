@@ -1,23 +1,27 @@
-package com.example.classconnect;
+package com.example.classconnect.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.classconnect.Entities.Task;
+import com.example.classconnect.R;
+import com.example.classconnect.TaskDetailsActivity;
 
 import java.util.List;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
+public class TaskCustomAdapter extends RecyclerView.Adapter<TaskCustomAdapter.CustomViewHolder> {
     public Context context;
     public List<Task> taskList;
 
-    public CustomAdapter(Context context, List<Task> tasks){
+    public TaskCustomAdapter(Context context, List<Task> tasks){
         this.context = context;
         this.taskList = tasks;
     }
@@ -36,6 +40,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
         Task task = taskList.get(position);
         holder.taskActivityNumber.setText(String.format("Activity %d: %s", task.getTaskNumber(), task.getTaskName()));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppCompatActivity activity = (AppCompatActivity) context;
+                Intent intent = new Intent(context, TaskDetailsActivity.class);
+                activity.startActivity(intent);
+            }
+        });
     }
 
     @Override
