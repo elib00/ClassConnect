@@ -13,6 +13,15 @@
         android:theme="@style/Theme.ClassConnect"
         tools:targetApi="31">
         <activity
+            android:name=".StudentInformationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ClassListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TeacherProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".CreateTaskActivity"
             android:exported="false" />
         <activity
@@ -27,7 +36,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>

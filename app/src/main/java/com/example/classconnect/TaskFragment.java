@@ -7,19 +7,24 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.classconnect.Entities.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.search.SearchBar;
 
 import java.util.ArrayList;
@@ -49,6 +54,9 @@ public class TaskFragment extends Fragment {
     private AppCompatButton ongoingButton;
     private AppCompatButton doneButton;
     private FloatingActionButton addTaskButton;
+    private ImageButton burgerButton;
+    private NavigationView sidebar;
+    private DrawerLayout drawerLayout;
 
     public TaskFragment() {
         // Required empty public constructor
@@ -72,6 +80,7 @@ public class TaskFragment extends Fragment {
         return fragment;
     }
 
+    //TODO diri ta mag fetch og data from the database
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -161,6 +170,41 @@ public class TaskFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        //for the burger button para mo-open ang sidebar
+        burgerButton = view.findViewById(R.id.burger_button);
+        sidebar = view.findViewById(R.id.side_nav_container);
+        drawerLayout = view.findViewById(R.id.drawer_layout);
+        burgerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+
+        sidebar.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                // Close the drawer after item is clicked
+                drawerLayout.closeDrawer(GravityCompat.START);
+
+                Intent intent;
+                if (menuItem.getItemId() == R.id.nav_teacher_profile) {
+                    System.out.println("teacher profile");
+                    intent = new Intent(requireContext(), TeacherProfileActivity.class);
+                    startActivity(intent);
+                }else if (menuItem.getItemId() == R.id.nav_class_list) {
+                    System.out.println("class list");
+                    intent = new Intent(requireContext(), ClassListActivity.class);
+                    startActivity(intent);
+                }
+
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
+
+
     }
 
     private void selectButton(AppCompatButton selectedButton){
