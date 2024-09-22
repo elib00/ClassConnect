@@ -3,7 +3,6 @@ package com.example.classconnect.Entities;
 import android.location.Address;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Student {
     private String name;

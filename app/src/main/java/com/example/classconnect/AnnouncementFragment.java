@@ -1,12 +1,25 @@
 package com.example.classconnect;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.classconnect.Adapters.TaskCustomAdapter;
+import com.example.classconnect.Adapters.UpdateCustomAdapter;
+import com.example.classconnect.Entities.Update;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +36,10 @@ public class AnnouncementFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private List<Update> updateList;
+    private UpdateCustomAdapter adapter;
+    private RecyclerView updatesContainer;
 
     public AnnouncementFragment() {
         // Required empty public constructor
@@ -59,6 +76,29 @@ public class AnnouncementFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_announcement, container, false);
+        View view =  inflater.inflate(R.layout.fragment_announcement, container, false);
+        initializeFragment(view);
+        return view;
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        updatesContainer = (RecyclerView) view.findViewById(R.id.updates_list_container);
+        updatesContainer.setLayoutManager(new LinearLayoutManager(getContext()));
+        updatesContainer.hasFixedSize();
+
+        adapter = new UpdateCustomAdapter(getContext(), updateList);
+        updatesContainer.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+    private void initializeFragment(View view){
+        updateList = new ArrayList<>();
+        for(int i = 0; i < 10; i++){
+            updateList.add(new Update("Announcement No. " + (i + 1), LocalDate.now(), "Sample", i + 1));
+        }
     }
 }

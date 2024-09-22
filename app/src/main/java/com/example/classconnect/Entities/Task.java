@@ -13,9 +13,8 @@ public class Task {
         this.taskInstructions = taskInstructions;
         isDone = false;
     }
-
-    public void setIsDone(boolean state){
-        isDone = state;
+    public boolean getIsDone(){
+        return isDone;
     }
 
     public int getTaskNumber(){

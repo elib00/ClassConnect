@@ -12,36 +12,31 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.classconnect.Entities.Student;
-import com.example.classconnect.Entities.Task;
+import com.example.classconnect.Entities.Update;
 import com.example.classconnect.R;
 import com.example.classconnect.StudentInformationActivity;
-import com.example.classconnect.TaskDetailsActivity;
 
 import java.util.List;
 
-public class StudentCustomAdapter extends RecyclerView.Adapter<StudentCustomAdapter.CustomViewHolder> {
+public class UpdateCustomAdapter  extends RecyclerView.Adapter<UpdateCustomAdapter.CustomViewHolder> {
     public Context context;
-    public List<Student> studentList;
+    public List<Update> updateList;
 
-    public StudentCustomAdapter(Context context, List<Student> students){
+    public UpdateCustomAdapter(Context context, List<Update> updateList){
         this.context = context;
-        this.studentList = students;
+        this.updateList = updateList;
     }
-
-
     @NonNull
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.item_student, parent, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.item_update, parent, false);
         return new CustomViewHolder(v);
     }
 
-    //TODO
-    //implement nga if i click ang item, muadto shas specific nga page para niya
     @Override
-    public void onBindViewHolder(@NonNull StudentCustomAdapter.CustomViewHolder holder, int position) {
-        Student student = studentList.get(position);
-        holder.studentName.setText(student.getName());
+    public void onBindViewHolder(@NonNull UpdateCustomAdapter.CustomViewHolder holder, int position) {
+        Update announcement = updateList.get(position);
+        holder.announcementName.setText(announcement.getTitle());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,16 +50,15 @@ public class StudentCustomAdapter extends RecyclerView.Adapter<StudentCustomAdap
 
     @Override
     public int getItemCount() {
-        return studentList.size();
+        return updateList.size();
     }
 
     public static class CustomViewHolder extends RecyclerView.ViewHolder {
-        TextView studentName;
+        TextView announcementName;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
-            studentName = itemView.findViewById(R.id.student_name);
+            announcementName = itemView.findViewById(R.id.announcement_name);
         }
     }
 }
-
